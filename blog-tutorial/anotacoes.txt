@@ -1,0 +1,28 @@
+loader - carrega os dados no get, assim que acessado a pagina "useLoaderData(), pode ser utilizado desde API ou até mesmo DB"
+
+ActionFuction - 
+
+
+==========> Rotas dinâmica - "dynamic segment" 
+
+Em vez de criar uma rota para cada uma de nossas postagens, podemos usar um "segmento dinâmico" na url. O Remix analisará e passará para nós para que possamos procurar a postagem dinamicamente.
+
+
+
+No arquivo routes/posts/index.tsx, criamos um Link com o post.slug, quando clicado para acesso leva a pagina dinamicamente, por conta que utilizamos o $slug
+
+Crie uma rota dinâmica em "app/routes/posts/$slug.tsx"
+
+ex: app/routes/posts/\$slug.tsx
+
+
+
+O que está sendo desestruturado no params é o request lá contem diversas informações entre elas o (headers, body e etc)
+
+export const loader = async ({ params }: LoaderArgs) => {
+
+  return json({ slug: params.slug });
+};
+
+
+(Parei em: Dynamic Route Params - Add a getPost function to our post module)
