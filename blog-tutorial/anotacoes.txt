@@ -26,3 +26,21 @@ export const loader = async ({ params }: LoaderArgs) => {
 
 
 (Parei em: Dynamic Route Params - Add a getPost function to our post module)
+
+
+
+=======================> Utilizando o Outlet
+
+Exemplos:
+
+Crio o rota users
+
+Quando acesso ele deve me levar para o arquivo da rota no caso users.tsx (Pai) - src/routes/users.tsx
+
+Quando tenho um filho no caso diretorio users (filho) - src/routes/users/index.tsx
+
+Para renderizar esse filho eu preciso utilizar o Outlet no Pai para que sejá redezizado o Pai e o filho dinamicamente
+
+Mais exemplos de utilizacao e anotacoes na rota posts/users.(está sem simplificado os exemplos)
+
+

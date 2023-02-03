@@ -14,6 +14,17 @@ export default function Posts() {
   return (
     <main>
       <h1>Posts</h1>
+      <Link to="admin" className="text-red-600 underline">
+        Admin
+      </Link>
+      <h1/>
+      <Link to="users" className="text-red-600 underline">
+        User
+      </Link>
+      {
+      /* Crio um rota para o admin e crio o arquivo admin.tsx o mesmo nome 
+      que utilizo no to=admin é o mesmo nome que precisa ser utilizado ao ser criado o arquivo*/
+      }
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>
