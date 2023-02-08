@@ -1,0 +1,55 @@
+loader - carrega os dados no get, assim que acessado a pagina "useLoaderData(), pode ser utilizado desde API ou até mesmo DB"
+
+ActionFuction - 
+
+
+==========> Rotas dinâmica - "dynamic segment" 
+
+Em vez de criar uma rota para cada uma de nossas postagens, podemos usar um "segmento dinâmico" na url. O Remix analisará e passará para nós para que possamos procurar a postagem dinamicamente.
+
+
+
+No arquivo routes/posts/index.tsx, criamos um Link com o post.slug, quando clicado para acesso leva a pagina dinamicamente, por conta que utilizamos o $slug
+
+Crie uma rota dinâmica em "app/routes/posts/$slug.tsx"
+
+ex: app/routes/posts/\$slug.tsx
+
+
+
+O que está sendo desestruturado no params é o request lá contem diversas informações entre elas o (headers, body e etc)
+
+export const loader = async ({ params }: LoaderArgs) => {
+
+  return json({ slug: params.slug });
+};
+
+
+(Parei em: Dynamic Route Params - Add a getPost function to our post module)
+
+
+
+=======================> Utilizando o Outlet
+
+Exemplos:
+
+Crio o rota users
+
+Quando acesso ele deve me levar para o arquivo da rota no caso users.tsx (Pai) - src/routes/users.tsx
+
+Quando tenho um filho no caso diretorio users (filho) - src/routes/users/index.tsx
+
+Para renderizar esse filho eu preciso utilizar o Outlet no Pai para que sejá redezizado o Pai e o filho dinamicamente
+
+Mais exemplos de utilizacao e anotacoes na rota posts/users.(está sem simplificado os exemplos)
+
+
+
+=======> <Link>
+
+
+
+<Link prefetch="intent" /> - Quando o mouse é passado por cima ele já é carregado os dados do link
+
+
+Recomendado se você deseja pré-buscar. Busca quando o Remix acha que o usuário pretende visitar o link. No momento, o comportamento é simples: se eles passarem o mouse ou focarem no link, ele pré-buscará os recursos. No futuro, esperamos tornar isso ainda mais inteligente. Links com grandes áreas de clique/preenchimento têm um pouco de vantagem. Vale ressaltar que ao usar prefetch="intent", <link rel="prefetch">os elementos serão inseridos no hover/focus e removidos caso o <Link>hover/focus seja perdido. Sem cabeçalhos adequados cache-controlem seus carregadores, isso pode resultar em carregamentos de pré-busca repetidos se um usuário passar o mouse continuamente dentro e fora de um link.
