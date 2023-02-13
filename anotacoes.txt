@@ -1,9 +1,24 @@
+O ideal é trazer somente que o vai utilizar nas chamadas da API e nao todos os dados da API
+
+
+
+==========================================
+
 loader - carrega os dados no get, assim que acessado a pagina "useLoaderData(), pode ser utilizado desde API ou até mesmo DB"
 
 ActionFuction - 
 
 
 ==========> Rotas dinâmica - "dynamic segment" 
+
+
+As rotas que começam com um $caractere indicam o nome de um segmento dinâmico da URL. Ele será analisado e passado para seu carregador e dados de ação como um valor no paramobjeto.
+
+Por exemplo: app/routes/blog/$postId.tsxcorresponderá aos seguintes URLs:
+
+/blog/my-story
+/blog/once-upon-a-time
+/blog/how-to-ride-a-bike
 
 Em vez de criar uma rota para cada uma de nossas postagens, podemos usar um "segmento dinâmico" na url. O Remix analisará e passará para nós para que possamos procurar a postagem dinamicamente.
 
@@ -27,6 +42,10 @@ export const loader = async ({ params }: LoaderArgs) => {
 
 (Parei em: Dynamic Route Params - Add a getPost function to our post module)
 
+
+=========== $.tsx =================
+
+Os arquivos nomeados $.tsx são chamados de rotas "splat" (ou "pega-tudo"). Essas rotas serão mapeadas para qualquer URL que não corresponda a outros arquivos de rota no mesmo diretório.
 
 
 =======================> Utilizando o Outlet
@@ -53,3 +72,26 @@ Mais exemplos de utilizacao e anotacoes na rota posts/users.(está sem simplific
 
 
 Recomendado se você deseja pré-buscar. Busca quando o Remix acha que o usuário pretende visitar o link. No momento, o comportamento é simples: se eles passarem o mouse ou focarem no link, ele pré-buscará os recursos. No futuro, esperamos tornar isso ainda mais inteligente. Links com grandes áreas de clique/preenchimento têm um pouco de vantagem. Vale ressaltar que ao usar prefetch="intent", <link rel="prefetch">os elementos serão inseridos no hover/focus e removidos caso o <Link>hover/focus seja perdido. Sem cabeçalhos adequados cache-controlem seus carregadores, isso pode resultar em carregamentos de pré-busca repetidos se um usuário passar o mouse continuamente dentro e fora de um link.
+
+
+
+====================== FORM ACTION ==============================
+
+action
+Na maioria das vezes você pode omitir este suporte. Formulários sem uma propriedade de ação ( <Form method="post">) serão postados automaticamente na mesma rota na qual foram renderizados. Isso facilita a colocação de seu componente, suas leituras de dados e suas gravações de dados.
+
+Se você precisar postar em uma rota diferente, adicione um suporte de ação:
+
+<Form action="/projects/new" method="post" />
+Quando um POST é feito para um URL, várias rotas em sua hierarquia de rotas corresponderão ao URL. Ao contrário de um GET para carregadores, onde todos eles são chamados para construir a interface do usuário, apenas uma ação é chamada . A rota chamada será a rota de correspondência mais profunda, a menos que a rota de correspondência mais profunda seja uma "rota de índice". Nesse caso, ele será postado na rota pai da rota de índice (porque eles compartilham a mesma URL).
+
+Se você deseja postar em uma rota de índice, use ?indexna ação:<Form action="/accounts?index" method="post" />
+
+==========================================================================================
+Posso utilizar o form action e utilizar o useParams, para o redirecioamento
+Tem o exemplo no video
+
+https://www.youtube.com/watch?v=rALcehn_IE8&list=PLFJmwzuHdBRRtyT_87aCtK7n8FTPmDbES&index=6&ab_channel=FabioVedovelli
+
+minuto 23:28
+==========================================================================================
